@@ -8085,13 +8085,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000024)
 
     Method (ADBG, 1, Serialized)
     {
-        If (CondRefOf (MDBG))
-        {
-            Return (MDBG)
-            Arg0
-        }
+        
+        Return(0)
 
-        Return (Zero)
     }
 
     OperationRegion (SPRT, SystemIO, 0xB2, 0x02)
