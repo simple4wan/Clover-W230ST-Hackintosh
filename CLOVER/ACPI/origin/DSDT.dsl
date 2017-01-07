@@ -2026,7 +2026,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000024)
                 {
                     Return (^XHC.POSC (Arg1, Arg2, Arg3))
                 }
-                ElseIf (_OSI ("Windows 2012"))
+                ElseIf(LOr(_OSI("Darwin"),_OSI("Windows 2012")))
                 {
                     If (LEqual (XCNT, Zero))
                     {
@@ -8618,7 +8618,7 @@ P8XH (One, 0xAB)
                     Store (0x07D9, OSYS)
                 }
 
-                If (_OSI ("Windows 2012"))
+                If(LOr(_OSI("Darwin"),_OSI("Windows 2012")))
                 {
                     Store (0x07DC, OSYS)
                 }
