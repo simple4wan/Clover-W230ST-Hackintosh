@@ -4908,6 +4908,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000024)
                     }
                 }
             }
+            Device (IMEI)
+            {
+                Name (_ADR, 0x00160000)
+            }
         }
     }
 
