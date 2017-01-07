@@ -60,13 +60,13 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000024)
     External (_SB_.IFFS.GFTV, UnknownObj)    // Warning: Unknown object
     External (_SB_.PCCD, UnknownObj)    // Warning: Unknown object
     External (_SB_.PCCD.PENB, UnknownObj)    // Warning: Unknown object
-    External (_SB_.PCI0.GFX0, UnknownObj)
-    External (_SB_.PCI0.GFX0.CLID, FieldUnitObj)
-    External (_SB_.PCI0.GFX0.GSCI, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.GSSE, FieldUnitObj)
-    External (_SB_.PCI0.GFX0.LCD0, UnknownObj)
-    External (_SB_.PCI0.GFX0.PDDS, MethodObj)    // Warning: Unknown method, guessing 1 arguments
-    External (_SB_.PCI0.GFX0.SKIP, UnknownObj)    // Warning: Unknown object
+    External (_SB_.PCI0.IGPU, UnknownObj)
+    External (_SB_.PCI0.IGPU.CLID, FieldUnitObj)
+    External (_SB_.PCI0.IGPU.GSCI, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.GSSE, FieldUnitObj)
+    External (_SB_.PCI0.IGPU.LCD0, UnknownObj)
+    External (_SB_.PCI0.IGPU.PDDS, MethodObj)    // Warning: Unknown method, guessing 1 arguments
+    External (_SB_.PCI0.IGPU.SKIP, UnknownObj)    // Warning: Unknown object
     External (_SB_.PCI0.LPCB.PEG0.PEGP.TGPC, UnknownObj)    // Warning: Unknown object
     External (_SB_.PCI0.PEG0, UnknownObj)
     External (_SB_.PCI0.PEG0.HPME, MethodObj)    // 0 Arguments
@@ -7731,11 +7731,11 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000024)
             {
                 If (LIDS)
                 {
-                    Store (0x03, ^^GFX0.CLID)
+                    Store (0x03, ^^IGPU.CLID)
                 }
                 Else
                 {
-                    Store (Zero, ^^GFX0.CLID)
+                    Store (Zero, ^^IGPU.CLID)
                 }
             }
 
@@ -7743,7 +7743,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000024)
             {
                 If (LEqual (And (OEMF, 0x0400), Zero))
                 {
-                    Store (One, ^^GFX0.SKIP)
+                    Store (One, ^^IGPU.SKIP)
                 }
             }
 
@@ -8803,7 +8803,7 @@ P8XH (One, 0xAB)
                 0x02, 
                 Package (0x01)
                 {
-                    "\\_SB.PCI0.GFX0"
+                    "\\_SB.PCI0.IGPU"
                 }, 
 
                 Package (0x01)
@@ -8815,7 +8815,7 @@ P8XH (One, 0xAB)
             {
                 Package (0x02)
                 {
-                    "\\_SB.PCI0.GFX0", 
+                    "\\_SB.PCI0.IGPU", 
                     0xFFFFFFFF
                 }, 
 
@@ -8910,7 +8910,7 @@ P8XH (One, 0xAB)
                                         One, 
                                         Package (0x01)
                                         {
-                                            "\\_SB.PCI0.GFX0"
+                                            "\\_SB.PCI0.IGPU"
                                         }
                                     })
                                 }
@@ -9355,9 +9355,9 @@ P8XH (One, 0xAB)
 
         Method (_L06, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If (LAnd (\_SB.PCI0.GFX0.GSSE, LNot (GSMI)))
+            If (LAnd (\_SB.PCI0.IGPU.GSSE, LNot (GSMI)))
             {
-                \_SB.PCI0.GFX0.GSCI ()
+                \_SB.PCI0.IGPU.GSCI ()
             }
         }
 
@@ -9374,7 +9374,7 @@ P8XH (One, 0xAB)
                 {
                     If (LEqual (And (OEMF, 0x0400), Zero))
                     {
-                        Store (LIDS, \_SB.PCI0.GFX0.CLID)
+                        Store (LIDS, \_SB.PCI0.IGPU.CLID)
                     }
 
                     Notify (\_SB.LID0, 0x80)
@@ -10561,7 +10561,7 @@ P8XH (One, 0xAB)
                 {
                     If (LEqual (And (OEMF, 0x0400), Zero))
                     {
-                        If (^^PCI0.GFX0.PDDS (0x0300))
+                        If (^^PCI0.IGPU.PDDS (0x0300))
                         {
                             Store (One, Local0)
                         }
@@ -11568,7 +11568,7 @@ P8XH (One, 0xAB)
                     {
                         If (LEqual (And (OEMF, 0x0400), Zero))
                         {
-                            Store (One, ^^^GFX0.SKIP)
+                            Store (One, ^^^IGPU.SKIP)
                         }
                     }
 
@@ -11864,7 +11864,7 @@ P8XH (One, 0xAB)
                 {
                     If (LEqual (And (OEMF, 0x0400), Zero))
                     {
-                        Notify (GFX0, 0x80)
+                        Notify (IGPU, 0x80)
                     }
                     Else
                     {
@@ -11889,10 +11889,10 @@ P8XH (One, 0xAB)
                         {
                             If (And (OEMF, 0x2000))
                             {
-                                Store (Zero, ^^^GFX0.SKIP)
+                                Store (Zero, ^^^IGPU.SKIP)
                             }
 
-                            Notify (^^^GFX0.LCD0, 0x87)
+                            Notify (^^^IGPU.LCD0, 0x87)
                         }
                         Else
                         {
@@ -11901,7 +11901,7 @@ P8XH (One, 0xAB)
                     }
                     Else
                     {
-                        Notify (^^^GFX0.LCD0, 0x87)
+                        Notify (^^^IGPU.LCD0, 0x87)
                     }
                 }
                 ElseIf (^^^^WMI.HKDR)
@@ -11922,10 +11922,10 @@ P8XH (One, 0xAB)
                         {
                             If (And (OEMF, 0x2000))
                             {
-                                Store (Zero, ^^^GFX0.SKIP)
+                                Store (Zero, ^^^IGPU.SKIP)
                             }
 
-                            Notify (^^^GFX0.LCD0, 0x86)
+                            Notify (^^^IGPU.LCD0, 0x86)
                         }
                         Else
                         {
@@ -11934,7 +11934,7 @@ P8XH (One, 0xAB)
                     }
                     Else
                     {
-                        Notify (^^^GFX0.LCD0, 0x86)
+                        Notify (^^^IGPU.LCD0, 0x86)
                     }
                 }
                 ElseIf (^^^^WMI.HKDR)
@@ -11993,7 +11993,7 @@ P8XH (One, 0xAB)
                 {
                     If (LEqual (And (OEMF, 0x0400), Zero))
                     {
-                        Store (One, ^^^GFX0.SKIP)
+                        Store (One, ^^^IGPU.SKIP)
                     }
                 }
 
@@ -12034,7 +12034,7 @@ P8XH (One, 0xAB)
                 {
                     If (LEqual (And (OEMF, 0x0400), Zero))
                     {
-                        Notify (^^^GFX0.LCD0, 0x88)
+                        Notify (^^^IGPU.LCD0, 0x88)
                     }
                     Else
                     {
@@ -12090,7 +12090,7 @@ P8XH (One, 0xAB)
                 {
                     If (LEqual (And (OEMF, 0x0400), Zero))
                     {
-                        Notify (^^^GFX0.LCD0, 0x88)
+                        Notify (^^^IGPU.LCD0, 0x88)
                     }
                     Else
                     {
