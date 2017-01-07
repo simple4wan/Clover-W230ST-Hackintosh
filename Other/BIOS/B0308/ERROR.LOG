@@ -1,0 +1,2 @@
+
+Error 25: The host CPU does not have write access to the target flash area.  To enable write access for this operation you must modify the descriptor settings to give host access to this region.
