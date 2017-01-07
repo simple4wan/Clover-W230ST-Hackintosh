@@ -11880,68 +11880,18 @@ P8XH (One, 0xAB)
 
             Method (_Q11, 0, NotSerialized)  // _Qxx: EC Query
             {
-                Store (0x11, P80H)
-                If (And (WINF, One))
-                {
-                    If (LEqual (OSYS, 0x03E8))
-                    {
-                        If (LEqual (And (OEMF, 0x0400), Zero))
-                        {
-                            If (And (OEMF, 0x2000))
-                            {
-                                Store (Zero, ^^^IGPU.SKIP)
-                            }
+                
+                // Brightness Down
+                Notify(\_SB.PCI0.LPCB.PS2K, 0x0405)
 
-                            Notify (^^^IGPU.LCD0, 0x87)
-                        }
-                        Else
-                        {
-                            Notify (^^^PEG0.PEGP.LCD0, 0x87)
-                        }
-                    }
-                    Else
-                    {
-                        Notify (^^^IGPU.LCD0, 0x87)
-                    }
-                }
-                ElseIf (^^^^WMI.HKDR)
-                {
-                    Add (OEM2, 0xE0, ^^^^WMI.EVNT)
-                    Notify (WMI, 0xD0)
-                }
             }
 
             Method (_Q12, 0, NotSerialized)  // _Qxx: EC Query
             {
-                Store (0x12, P80H)
-                If (And (WINF, One))
-                {
-                    If (LEqual (OSYS, 0x03E8))
-                    {
-                        If (LEqual (And (OEMF, 0x0400), Zero))
-                        {
-                            If (And (OEMF, 0x2000))
-                            {
-                                Store (Zero, ^^^IGPU.SKIP)
-                            }
+                
+                // Brightness Up
+                Notify(\_SB.PCI0.LPCB.PS2K, 0x0406)
 
-                            Notify (^^^IGPU.LCD0, 0x86)
-                        }
-                        Else
-                        {
-                            Notify (^^^PEG0.PEGP.LCD0, 0x86)
-                        }
-                    }
-                    Else
-                    {
-                        Notify (^^^IGPU.LCD0, 0x86)
-                    }
-                }
-                ElseIf (^^^^WMI.HKDR)
-                {
-                    Add (OEM2, 0xE0, ^^^^WMI.EVNT)
-                    Notify (WMI, 0xD0)
-                }
             }
 
             Method (_Q13, 0, NotSerialized)  // _Qxx: EC Query
