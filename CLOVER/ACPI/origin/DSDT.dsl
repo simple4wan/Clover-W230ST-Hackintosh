@@ -7192,6 +7192,16 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000024)
             {
                 Return (GPRW (0x0D, 0x04))
             }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "layout-id", Buffer() { 0x03, 0x00, 0x00, 0x00 },
+                    "hda-gfx", Buffer() { "onboard-1" },
+                    "PinConfigurations", Buffer() { },
+                })
+            }
         }
 
         Device (SAT0)
