@@ -108,6 +108,8 @@
 			<string>SSDT-19.aml</string>
 			<string>SSDT-XOSI.aml</string>
 			<string>SSDT-LPC.aml</string>
+            <string>SSDT-PNLF.aml</string>
+
 		</array>
 	</dict>
 	<key>Boot</key>
@@ -509,6 +511,18 @@
 				AgQSAAAIAACHAAAA
 				</data>
 			</dict>
+            <dict>
+                <key>Comment</key>
+                <string>change F%uT%04x to F%uTxxxx in AppleBacklightInjector.kext (credit RehabMan)</string>
+                <key>Disabled</key>
+                <false/>
+                <key>Name</key>
+                <string>com.apple.driver.AppleBacklight</string>
+                <key>Find</key>
+                <data>RiV1VCUwNHgA</data>
+                <key>Replace</key>
+                <data>RiV1VHh4eHgA</data>
+            </dict>
 		</array>
 	</dict>
 	<key>RtVariables</key>
