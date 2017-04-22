@@ -241,6 +241,18 @@
 		<array>
 			<dict>
 				<key>Comment</key>
+				<string>Close some display port, only allow LVDS and HDMI</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>BwAmDQEDBAMAAAAEAAAgAgAAUAEAAABgoQcAAKEHAAAAAAAAAAAAAAAACAACAAAAMAAAAAEFCwAABAAABwEAAAIECwAABAAABwEAAAMGAwAACAAABgAAAB4DAAAFBQkABAAAADIAAAAOAAAAAAAAAA==</data>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>BwAmDQEDBAMAAAAEAAAgAgAAUAEAAABgoQcAAKEHAAAAAAAAAAAAAAAACAACAAAAMAAAAP8ACwAABAAABwEAAP8ACwAABAAABwEAAAMGAwAACAAABgAAAB4DAAAFBQkABAAAADIAAAAOAAAAAAAAAA==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>Enable 9MB cursor bytes, 0x0a260006</string>
 				<key>Disabled</key>
 				<true/>
